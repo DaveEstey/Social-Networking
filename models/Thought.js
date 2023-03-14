@@ -27,9 +27,9 @@ userSchema.virtual('reactionCount', function (reactions) {
     return reactions.legnth;
 }) 
 
-const User = new model('user', userSchema);
+const Thought = new model('thought', thoughtSchema);
 
 
-module.exports = User;
+module.exports = Thought;
 
 
