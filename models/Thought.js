@@ -11,19 +11,18 @@ const thoughtSchema = new Schema(
             
         },
         createdAt: {
-            date: Date,
-            default: Date.now(),
+            date: { type: Date, default: Date.now }
         },
         username: {
             type: String,
             required: true,
         },
-        reactions: [reactionSchema],
+       //reactions: [reactionSchema],
     },
 );
 
 
-userSchema.virtual('reactionCount', function (reactions) {
+thoughtSchema.virtual('reactionCount', function (reactions) {
     return reactions.legnth;
 }) 
 
