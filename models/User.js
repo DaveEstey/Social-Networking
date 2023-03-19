@@ -15,20 +15,21 @@ const userSchema = new Schema(
             unique: true,
             match: /.+\@.+\..+/,
         },
-        thoughts: [{
-            type:Schema.Types.ObjectId,
-            ref:'Thought'
-            }
+        thoughts: [
+            {
+              type: Schema.Types.ObjectId,
+              ref: 'Thought',
+            },
         ],
     },
 );
 
 
-userSchema.virtual('friendsCount', function (friends) {
-    return friends.legnth;
-}) 
+userSchema.virtual('friendsCount').get(function () {
+    return this.friends.legnth;
+});
 
-const User = new model('user', userSchema);
+const User = model('user', userSchema);
 
 
 module.exports = User;

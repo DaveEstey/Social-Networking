@@ -22,11 +22,11 @@ const thoughtSchema = new Schema(
 );
 
 
-thoughtSchema.virtual('reactionCount', function (reactions) {
-    return reactions.legnth;
+thoughtSchema.virtual('reactionCount').get(function () {
+    return this.reactions.legnth;
 }) 
 
-const Thought = new model('thought', thoughtSchema);
+const Thought = model('thought', thoughtSchema);
 
 
 module.exports = Thought;
