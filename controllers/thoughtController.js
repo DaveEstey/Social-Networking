@@ -19,8 +19,8 @@ module.exports = {
     createThought(req, res) {
         Thought.create(req.body)
             .then((dbThoughtData) => !dbThoughtData ? res.status(404).json('User not found')
-                : User.findOneAndUpdate({ username: dbThoughtData.userId },
-                    { $addToSet: { thoughts: dbThoughtData.body } },
+                : User.findOneAndUpdate({ _id: req.body.userId },
+                    { $addToSet: { thoughts: dbThoughtData._id } },
                     { runValidators: true, new: true },
                 ))
             .then(() => res.json({ message: 'your thought has been added' }))
