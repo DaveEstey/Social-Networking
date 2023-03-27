@@ -23,18 +23,30 @@ module.exports = {
                     { $addToSet: { thoughts: dbThoughtData._id } },
                     { runValidators: true, new: true },
                 ))
-            .then(() => res.json({ message: 'your thought has been added' }))
+            .then(() => res.json({ message: 'Your thought has been added' }))
             .catch((err) => res.status(500).json(err));  
           
     },
+    
     updateThought(req, res) {
-        Thought.findOneAndUpdate(
-
+        Thought.findOneAndUpdate({ _id: req.params.thoughtId },
+            { $set: req.body},
+            { runValidators: true, new: true },
         )
+    .then(() => res.json({ message: 'Your thought has been updated' }))
+    .catch((err) => res.status(500).json(err));
     },
+
     deleteThought(req, res) {
-        Thought.findOneAndRemove(
-
-        )
+        Thought.findOneAndRemove({_id: req.params.thoughtId})
+        .then(() => res.json({ message:'Your thought has been deleted' }))
+        .catch((err) => res.status(500).json(err));
     },
+    addReaction(req, res) {
+        
+    },
+
+    deleteReaction(req, res) {
+
+    }
 }
